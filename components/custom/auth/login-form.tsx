@@ -7,14 +7,14 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Github, Facebook } from "lucide-react";
 
-const LoginForm = ({ className, ...props }: React.ComponentPropsWithoutRef<"div">) => {
+const LoginForm = ({ login = true }: { login: boolean }) => {
   return (
     <div className={cn("flex flex-col gap-6")}>
       <Card className={cn("shadow-none border-none text-center w-[420px]")}>
         <CardHeader>
-          <CardTitle className="text-2xl mb-2">Login</CardTitle>
+          <CardTitle className="text-2xl mb-2">{login ? "Login" : "Register"}</CardTitle>
           <CardDescription className="text-sm text-black">
-            Enter your email below to login to your account
+            Enter your email below to {login ? "login to your account" : "register for an account"}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -22,9 +22,10 @@ const LoginForm = ({ className, ...props }: React.ComponentPropsWithoutRef<"div"
             <div>
               <Input type="email" placeholder="Email" className="shadow-sm" />
               <Input type="password" placeholder="Password" className="mt-2 shadow-sm" />
+              {!login && <Input type="password" placeholder="Confirm Password" className="mt-2 shadow-sm" />}
             </div>
             <Button type="submit" className="w-full mt-4">
-              Login with Email
+              {login ? "Login" : "Register"} with Email
             </Button>
           </form>
           <div className="relative my-6">
@@ -45,21 +46,23 @@ const LoginForm = ({ className, ...props }: React.ComponentPropsWithoutRef<"div"
           </div>
           <div className="text-center text-sm">
             <p className="mt-6">
-              Don't have an account?{" "}
-              <a href="/auth/register" className="underline">
-                Sign up
+              {login ? "Don't" : "Already"} have an account?{" "}
+              <a href={login ? "/auth/register" : "/auth/login"} className="underline">
+                {login ? "Register" : "Login"} here
               </a>
             </p>
-            <p className="mt-2">
-              By clicking continue, you agree to our{" "}
-              <a href="#" className="underline">
-                Terms of Service
-              </a>{" "}
-              and{" "}
-              <a href="#" className="underline">
-                Privacy Policy
-              </a>
-            </p>
+            {!login && (
+              <p className="mt-2">
+                By clicking continue, you agree to our{" "}
+                <a href="#" className="underline">
+                  Terms of Service
+                </a>{" "}
+                and{" "}
+                <a href="#" className="underline">
+                  Privacy Policy
+                </a>
+              </p>
+            )}
           </div>
         </CardContent>
       </Card>

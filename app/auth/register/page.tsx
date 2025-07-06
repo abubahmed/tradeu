@@ -9,7 +9,7 @@ export default function Page() {
         <MarketingCarousel />
       </div>
       <div className="flex-1 flex items-center justify-center">
-        <LoginForm login={true} />
+        <LoginForm login={false} />
       </div>
     </div>
   );
