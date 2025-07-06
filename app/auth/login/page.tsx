@@ -1,9 +1,14 @@
-import { LoginForm } from "@/components/login-form";
+import LoginForm from "@/components/custom/auth/login-form";
+import MarketingCarousel from "@/components/custom/auth/marketing-carousel";
 
 export default function Page() {
   return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
-      <div className="w-full max-w-sm">
+    <div className="flex min-h-svh">
+      <div className="flex-1 flex flex-col bg-gray-100">
+        <h1 className="text-2xl font-bold mx-10 mt-10 mb-2">TradeU</h1>
+          <MarketingCarousel />
+      </div>
+      <div className="flex-1 flex items-center justify-center">
         <LoginForm />
       </div>
     </div>
