@@ -1,5 +1,5 @@
 "use server";
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
@@ -36,7 +36,7 @@ const handleRegister = async (_: any, formData: FormData): Promise<any> => {
   }
 
   revalidatePath("/", "layout");
-  redirect("/");
+  redirect("/auth/confirm-page?email=" + encodeURIComponent(email));
 };
 
 export { handleRegister };

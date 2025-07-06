@@ -7,9 +7,11 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Github, Facebook } from "lucide-react";
 import { useActionState } from "react";
+import { handleLogin } from "@/app/auth/login/actions";
+import { handleRegister } from "@/app/auth/register/actions";
 
-const LoginForm = ({ login = true, onSubmit }: { login: boolean; onSubmit: any }) => {
-  const [state, action] = useActionState(onSubmit, { error: undefined });
+const LoginForm = ({ login = true }: { login: boolean }) => {
+  const [state, action] = useActionState(login ? handleLogin : handleRegister, { error: undefined });
   return (
     <div className={cn("flex flex-col gap-6")}>
       <Card className={cn("shadow-none border-none text-center w-[420px]")}>
@@ -38,7 +40,7 @@ const LoginForm = ({ login = true, onSubmit }: { login: boolean; onSubmit: any }
             <Button type="submit" className="w-full mt-4">
               {login ? "Login" : "Register"} with Email
             </Button>
-            {state.error && <p className="text-sm text-red-500 mt-2">{state.error}</p>}
+            {state.error && <p className="text-sm text-red-500 mt-4">{state.error}</p>}
           </form>
 
           <div className="relative my-6">
@@ -66,19 +68,6 @@ const LoginForm = ({ login = true, onSubmit }: { login: boolean; onSubmit: any }
                 {login ? "Register" : "Login"} here
               </a>
             </p>
-
-            {!login && (
-              <p className="mt-2">
-                By clicking continue, you agree to our{" "}
-                <a href="#" className="underline">
-                  Terms of Service
-                </a>{" "}
-                and{" "}
-                <a href="#" className="underline">
-                  Privacy Policy
-                </a>
-              </p>
-            )}
           </div>
         </CardContent>
       </Card>

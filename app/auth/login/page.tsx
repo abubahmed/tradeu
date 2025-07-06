@@ -1,6 +1,5 @@
 import LoginForm from "@/components/custom/auth/login-form";
 import MarketingCarousel from "@/components/custom/auth/marketing-carousel";
-import { handleLogin } from "./actions";
 
 export default function Page() {
   return (
@@ -10,7 +9,7 @@ export default function Page() {
         <MarketingCarousel />
       </div>
       <div className="flex-1 flex items-center justify-center">
-        <LoginForm login={true} onSubmit={handleLogin} />
+        <LoginForm login={true} />
       </div>
     </div>
   );

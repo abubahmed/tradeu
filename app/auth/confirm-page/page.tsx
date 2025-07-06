@@ -1,7 +1,12 @@
-import LoginForm from "@/components/custom/auth/login-form";
+"use client";
+
 import MarketingCarousel from "@/components/custom/auth/marketing-carousel";
+import { useSearchParams } from "next/navigation";
+import VerifyEmailCard from "@/components/custom/auth/verify-email-card";
 
 export default function Page() {
+  const searchParams = useSearchParams();
+  const email = searchParams.get("email") ?? "";
   return (
     <div className="flex min-h-svh">
       <div className="flex-1 flex flex-col bg-gray-100">
@@ -9,7 +14,7 @@ export default function Page() {
         <MarketingCarousel />
       </div>
       <div className="flex-1 flex items-center justify-center">
-        <LoginForm login={false} />
+        <VerifyEmailCard email={email} />
       </div>
     </div>
   );
